@@ -88,10 +88,10 @@ def search(query):
         else:
             filtered_tokens = [token for token in final_search if token not in stopwords.words('english')]
             query_terms_count = len(filtered_tokens)
-            postings_list = inverted_index[final_search[0]]
+            postings_list = inverted_index[filtered_tokens[0]]
             print(' ------ ' + query +' ------ ')
             for i in range(1, query_terms_count):
-                postings_list = overlap(postings_list, inverted_index[final_search[i]])
+                postings_list = overlap(postings_list, inverted_index[filtered_tokens[i]])
             print(postings_list)
             print('count:' + str(len(postings_list)))
 
@@ -100,9 +100,8 @@ if __name__ == '__main__':
     # search('parents')
     # search('parents AND children')
     # search('parents OR children')
-    search("Reagan")
-    search("Brown-Forman AND Inc")
-    search("Hyundai OR Motors")
+    search("Democrats welfare healthcare reform policies")
+
 
     # search('able and interesting')
 
